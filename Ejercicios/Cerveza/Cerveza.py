@@ -1,15 +1,12 @@
-IBU = input()
+N = input()
 
-match int(IBU):
-    case num if 0 <= num <= 10:
-        print('CRUZCAMPO')
-    case num if 11 <= num <= 20:
-        print('MALA')
-    case num if 21 <= num <= 35:
-        print('REGULAR')
-    case num if 26 <= num <= 45:
-        print('BUENA')
-    case num if 46 <= num:
-        print('MUY BUENA')
-    case _:
-        print('INVALIDO')
+if 0 <= int(N) <= 10:
+    print('CRUZCAMPO')
+elif 11 <= int(N) <= 20:
+    print('MALA')
+elif 21 <= int(N) <= 35:
+    print('REGULAR')
+elif 26 <= int(N) <= 45:
+    print('BUENA')
+elif 46 <= int(N):
+    print('MUY BUENA')
