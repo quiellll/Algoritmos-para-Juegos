@@ -9,6 +9,9 @@ def checkPalindrome(word):
 
 n = input().strip()
 
+winner = "EMPATE"
+ended = False
+
 ana = 0
 monica = 0
 pointer = 0
@@ -17,18 +20,20 @@ for p in range(int(n)):
 
     w = input().strip()
 
-    if checkPalindrome(w):
-        if pointer % 2 == 0:
+    if pointer % 2 == 0:
+        if checkPalindrome(w):
             ana += 1
-        elif pointer % 2 == 1:
+        elif ended is False:
+            winner = "MONICA"
+            ended = True
+    elif pointer % 2 == 1:
+        if checkPalindrome(w):
             monica += 1
+        elif ended is False:
+            winner = "ANA"
+            ended = True
 
     pointer += 1
 
-if ana > monica:
-    print(str(ana) + " " + str(monica) + " ANA")
-elif monica > ana:
-    print(str(ana) + " " + str(monica) + " MONICA")
-else:
-    print(str(ana) + " " + str(monica) + " EMPATE")
 
+print(str(ana) + " " + str(monica) + " " + str(winner))

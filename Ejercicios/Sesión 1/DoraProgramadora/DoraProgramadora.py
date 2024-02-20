@@ -1,20 +1,21 @@
-def repetidos(txt, dsp):
-    dictionary = {}
-    for i in txt:
-        if txt.count(i) >= 3:
-            dictionary[i] = str(txt.count(i)).strip()
-    for i in dictionary:
-        dsp += i
-    return ' '.join(dsp.strip().replace(' ', ''))
+def repeated(emp, bustedList):
+    for identifier, rep in emp.items():
+        if rep >= 3:
+            bustedList.append(identifier)
+    bustedList.sort()
+    return bustedList
 
 
-cazados = ""
+e = list(map(int, input().strip().split()))
 
-while "-1" not in cazados:
-    empleado = input().strip()
-    cazados += empleado
+employees = {}
 
-despedidos = ''
-cazados = ''.join(sorted(cazados.split()))
-despedidos = repetidos(cazados, despedidos)
-print(despedidos)
+for i in e:
+    if i != -1:
+        employees[i] = employees.get(i, 0) + 1
+
+busted = []
+busted = repeated(employees, busted)
+
+for i in busted:
+    print(i, end=" ")
