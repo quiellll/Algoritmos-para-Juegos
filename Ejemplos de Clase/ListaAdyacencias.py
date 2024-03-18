@@ -19,7 +19,7 @@ def dfs(g_dfs):
     nodos = len(g_dfs)
     # Se crea una lista vacía para almacenar el recorrido
     lista = []
-    # Por cada nodo (no visitado), se realiza la exploración [creo (eso es lo que interpreto)]
+    # Por si no es conexo
     for i in range(nodos):
         if i not in visited:
             dfs_recursivo(g_dfs, i, visited, lista)
