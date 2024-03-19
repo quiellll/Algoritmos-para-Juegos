@@ -36,6 +36,7 @@ def PersonasSeducidas(cualidadValorada, tiempoRestante, posiblesParejas):
 nConcursantes = int(input())
 concursantes = []
 posiblesParejas = []
+
 for i in range(nConcursantes):
     cualidadMasValorada = input()
     tiempoRestante = int(input())
