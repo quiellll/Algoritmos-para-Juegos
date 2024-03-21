@@ -1,11 +1,4 @@
 def ordenar_famosos(famosos):
-
-    for f in famosos:
-        prioridad = f[2] / f[3]
-        f[0] = prioridad
-
-    famosos.sort()
-
     mas_amable = famosos[0]
 
     for f in famosos:
@@ -30,7 +23,8 @@ famosos = []
 
 for _ in range(n_famosos):
     nombre, amabilidad, fama, tiempo = map(str, input().strip().split())
-    famoso = [0, nombre, int(amabilidad), int(fama), int(tiempo)]
+    famoso = [(int(amabilidad)/int(fama)), nombre, int(amabilidad), int(fama), int(tiempo)]
     famosos.append(famoso)
 
+famosos.sort()
 ordenar_famosos(famosos)
