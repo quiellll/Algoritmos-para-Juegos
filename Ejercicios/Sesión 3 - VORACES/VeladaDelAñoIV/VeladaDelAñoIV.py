@@ -23,7 +23,6 @@ total_actividades = []
 
 for _ in range(n_actividades):
     n_actividad, t_ini, t_fin = map(str, input().strip().split())
-    # t_total = int(t_fin) - int(t_ini)
     total_actividades.append([n_actividad, int(t_ini), int(t_fin)])
 
 print(seleccionar_actividades(total_actividades))

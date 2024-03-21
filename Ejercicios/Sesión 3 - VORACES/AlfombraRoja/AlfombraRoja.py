@@ -2,6 +2,7 @@ def ordenar_famosos(famosos):
     mas_amable = famosos[0]
 
     for f in famosos:
+        # String < String para ordenar alfabéticamente
         if f[1] < mas_amable[1]:
             mas_amable = f
 
