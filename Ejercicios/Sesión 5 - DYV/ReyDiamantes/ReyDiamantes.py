@@ -1,52 +1,52 @@
-def binary_search(grid, target, used_indices):
-    low, high = 0, len(grid) - 1
-    closest_larger = None
+def rec_bs(v, number, low, high):
+    if low >= high: #caso base
+        return low
 
-    while low <= high:
-        mid = (low + high) // 2
-        value, _ = grid[mid]
-
-        if mid in used_indices:
-            # Si ya se ha descartado a este jugador, se omite
-
-            low = mid + 1
-
-            continue
-
-        if value < target:
-            low = mid + 1
-        elif value > target:
-            if closest_larger is None or (value < grid[closest_larger][0] and closest_larger not in used_indices):
-                closest_larger = mid
-            high = mid - 1
-        else:
-            return mid  # Valor exacto encontrado
-
-    return closest_larger  # Devolver el índice del mayor si no se ha encontrado el valor exacto
+    mid = (low + high) // 2
+#    if v[mid][0] == number:
+#        return mid
+    if number <= v[mid]:
+        return rec_bs(v, number, low, mid)
+    else:
+        return rec_bs(v, number, mid + 1, high)
 
 
-def process_grid(original_grid, discard_list):
-    n = len(original_grid)
-    flat_grid = [(original_grid[i][j], (i, j)) for i in range(n) for j in range(n)]
+def recBinarySearch(v, number):
+    return rec_bs(v, number, 0, len(v) - 1)
+
+
+def DiscardPlayers(index, used_indices, grid):
+    for i in range(index, len(grid)):
+        if i not in used_indices:
+            used_indices.add(i)  # Marcar el índice como usado
+            return
+
+def process_grid(grid, discard_list):
     used_indices = set()  # Almacena los índices de los valores que ya se han descartado
 
     # Procesa cada número en el conjunto de descartes
     for number in discard_list:
-        index = binary_search(flat_grid, number, used_indices)
-        if index is not None and index not in used_indices:
-            _, (i, j) = flat_grid[index]
-            original_grid[i][j] = 'X'  # Poner la 'X'
-            used_indices.add(index)  # Marcar el índice como usado
-
-
-def print_grid(grid):
-    for row in grid:
-        print(' '.join(str(x) for x in row))
+        if number > grid[-1]: continue
+        index = recBinarySearch(grid, number)
+        DiscardPlayers(index, used_indices, grid)
+    return used_indices
 
 
 n = int(input().strip())
-grid = [list(map(int, input().strip().split())) for _ in range(n)]
+grid = []
+
+for _ in range(n):
+    for e in input().strip().split():
+        grid.append(int(e))
+
 discard_set = list(map(int, input().strip().split()))
 
-process_grid(grid, discard_set)
-print_grid(grid)
+used = process_grid(grid, discard_set)
+
+for i in range(n * n):
+    if i in used:
+        grid[i] = "X"
+    if (i+1) % n == 0:
+        print(grid[i])
+    else:
+        print(grid[i], end=" ")
