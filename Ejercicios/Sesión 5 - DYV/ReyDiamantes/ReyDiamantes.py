@@ -8,7 +8,9 @@ def binary_search(grid, target, used_indices):
 
         if mid in used_indices:
             # Si ya se ha descartado a este jugador, se omite
+
             low = mid + 1
+
             continue
 
         if value < target:
@@ -23,13 +25,13 @@ def binary_search(grid, target, used_indices):
     return closest_larger  # Devolver el índice del mayor si no se ha encontrado el valor exacto
 
 
-def process_grid(original_grid, discard_set):
+def process_grid(original_grid, discard_list):
     n = len(original_grid)
     flat_grid = [(original_grid[i][j], (i, j)) for i in range(n) for j in range(n)]
     used_indices = set()  # Almacena los índices de los valores que ya se han descartado
 
     # Procesa cada número en el conjunto de descartes
-    for number in discard_set:
+    for number in discard_list:
         index = binary_search(flat_grid, number, used_indices)
         if index is not None and index not in used_indices:
             _, (i, j) = flat_grid[index]
@@ -44,7 +46,7 @@ def print_grid(grid):
 
 n = int(input().strip())
 grid = [list(map(int, input().strip().split())) for _ in range(n)]
-discard_set = set(map(int, input().strip().split()))
+discard_set = list(map(int, input().strip().split()))
 
 process_grid(grid, discard_set)
 print_grid(grid)
