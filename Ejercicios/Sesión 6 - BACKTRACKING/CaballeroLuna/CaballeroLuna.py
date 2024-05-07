@@ -32,7 +32,8 @@ def puede_atacar(x, y, d, room, enemigos):
     else:
         return "CORRE"
 
-#entrada
+
+# entrada
 n, m, e = map(int, input().strip().split())
 
 room = []
