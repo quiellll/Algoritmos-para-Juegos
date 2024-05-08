@@ -30,7 +30,7 @@ p = int(input().strip())
 for i in range(p):
     obj1, obj2 = map(int, input().strip().split())
     idx1 = obtener_indice(grupo1, 0, n - 1, obj1)
-    idx2= obtener_indice(grupo2, 0, m - 1, obj2)
+    idx2 = obtener_indice(grupo2, 0, m - 1, obj2)
     if idx1 >= 0 and idx2 >= 0:
         print(str(idx1) + " " + str(idx2))
     else:
