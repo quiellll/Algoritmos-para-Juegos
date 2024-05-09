@@ -1,5 +1,3 @@
-from math import ceil
-
 n, m = map(int, input().strip().split())
 edges = []
 
@@ -19,9 +17,10 @@ def find(u):
     return parent[u]
 
 
-def union(u,v):
+def union(u, v):
     root_u = find(u)
     root_v = find(v)
+
     if root_u != root_v:
         if rank[root_u] > rank[root_v]:
             parent[root_v] = root_u
@@ -31,11 +30,11 @@ def union(u,v):
             parent[root_v] = root_u
             rank[root_u] += 1
 
-mst_cost = 0
 
+mst_cost = 0
 for cost, u, v in edges:
     if find(u) != find(v):
         union(u, v)
         mst_cost += cost
 
-print(ceil(mst_cost / 5))
+print(mst_cost)
